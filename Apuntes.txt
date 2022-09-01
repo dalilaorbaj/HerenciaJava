@@ -28,13 +28,13 @@ Un paquete comparte ciertas clases
     public Auto(String, ma, String mo, Strin pa, boolean ta){
         super(ma, mo, pa); //Aca invoca al constructor de la superclase (Vehiculo)
         /*
-        Si la superclase no necesita ningun parametro no hay que poner lo siguiente: 
+        Si la superclase no necesita ningun parametro NO hay que poner lo siguiente: 
         super(); 
         */
         this.tieneAire = ta;
     }
 
-- GENERALIZACION (upcasting): Al haber una relacion de herencia podemos 
+- GENERALIZACION (upcasting): La herencia es hacia abajo, los hijos pueden usar los metodos del padre pero no los propios del hijo. La descendencia es hacia abajo. 
 Ejemplos: 
     public static void main(...){
         Auto a = new Auto();
@@ -44,7 +44,15 @@ Ejemplos:
         /*De arriba a abajo se puede pero de abajo a arriba no*/
     }
 
-    --> No es necsario castear porque ya se que el auto es un vehiculo
+--> El casting hacia arriba se hace de manera implicita. Por eso programamos asi:  
+    Auto a = new Auto()
+
+    Y esto es innecesario: 
+
+    Vehiculo v = a;
+    Vehiculo v2 = (Vehiculo) a;
+
+    --> No es necesario castear porque ya se que el auto es un vehiculo
 
     --> Con el ejemplo de una concesionaria puedo tener una lista de vehiculos en lugar de tener una lista de autos, otra de camionetas y otra de motos. 
     
@@ -55,12 +63,20 @@ Ejemplos:
 
     Tengo esto: 
     public void agregarVehiculo(Vehiculo v){
-        this.vejiculos.add(v)
+        this.vehiculos.add(v)
     }
 
-    /*Asi tendria que definir los vehiculos: Vehiculo v2 = new Auto();*/
+    /*De este modo tendria que definir los vehiculos así: Vehiculo v2 = new Auto();*/
 
---> El unico problema de la generalizacion es que los objetos que cree de esta forma no van a poder acceder a las funciones de la clase hija (o sea del auto) 
+--> El unico problema de la generalizacion es que los objetos que creo de esta forma no van a poder acceder a las funciones de la clase hija (o sea del auto) 
+Si yo hago esto (sin upcasting): 
+Auto a = new Auto();
+puedo hacer esto: 
+a.acelerar(); //Porque es una funcion de la clase hija
+
+Pero si hago esto (c/upcasting):
+Vehiculo v = a;
+
 
 
 - ESPECIALIZACION (downcasting): La especializacion no funciona por si sola, no es automatica como el upcasting, por lo que si tenemos que castear explicitamente
@@ -91,7 +107,7 @@ public static void main(){
     }
 }
 
-- CLASE ABSTRACTA: Me sirve para evtar que alguien me instance un objeto de esa clase. Podria hacer que la clase Vehiculo sea abstracta asi no tengo objetos de tipo Vehiculo, sino que de tipo Moto, Auto, etc. 
+- CLASE ABSTRACTA: Me sirve para evitar que alguien me instancie un objeto de esa clase. Podria hacer que la clase Vehiculo sea abstracta asi no tengo objetos de tipo Vehiculo, sino que de tipo Moto, Auto, etc. 
 --> Si hay un metodo abstracto ya toda la clase tiene que ser abstracta. 
 --> Ademas con la clase abstracta obligo a todas las subclases a declarar los mismo metodos, no importa si estan vacios. 
 Puedo tener objetos de tipo Vehiculo pero no puedo instanciar objetos de tipo Vehiculo
@@ -99,3 +115,12 @@ Puedo tener objetos de tipo Vehiculo pero no puedo instanciar objetos de tipo Ve
 --> No puedo: Vehiculo v = new Vehiculo();
 
 - No siempre la generalizacion lleva a que sea abstracta, unicamente cuando es conveniente
+
+
+/*01/09/2022*/
+
+Castear sirve para asegurarse de que un dato es de un tipo en concreto
+
+Upcasting es encasillar de un objeto hijo a un objeto padre. 
+
+Downcasting es encasillar un objeto padre a un objeto hijo. 
