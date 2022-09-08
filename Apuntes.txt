@@ -123,4 +123,129 @@ Castear sirve para asegurarse de que un dato es de un tipo en concreto
 
 Upcasting es encasillar de un objeto hijo a un objeto padre. 
 
-Downcasting es encasillar un objeto padre a un objeto hijo. 
+Downcasting es encasillar un objeto padre a un objeto hijo.
+
+08/09/2022
+
+La herencia no tiene mucho sentido sin el polimorfismo. 
+--> ¿Qué es el polimorfismo?  
+    Es una relajacion del sistema de tipos, de tal manera que una referencia a una clase (ya sea un atributo, parametro, declaracion local o elemento de una coleccion) acepta direcciones de objetos de dicha clase y de sus clases derivadas (hijas, nietas, etc)
+Esto quiere decir que un coso de Vehiculo acepta direcciones de memoria que apunten a objetos de tipo Auto, Bicicleta, etc (porque son derivadas de la clase)
+Propiedad por la que es posible enviar mensajes sintacticamente iguales a objetos de tipos distintos. El unico requisito que tienen que cumplir los objetos que se utilizan de manera polimorfica es saber responder al mensaje que se les envia. 
+Es decir, a distintos tipos de objetos yo puedo enviarle el mismo tipo de mensaje y cada uno va a saber reaccionar a su propia manera, es decir puedo pedirles que ejecuten una accion y cada clase va a ejecutar su propio metodo.
+Esto sirve porque si despues agregas otra clase no te preocupas porque cumpla con todos los metodos y atributos porque se pueden customizar. 
+Ademas eliminamos los condicionales:
+    /*ESTO ES LO QUE NO HAY QUE HACER, solucion inicial de programacion estructurada*/
+    if(tipo == "pajaro"){
+        print("pio pio")
+    }else if(tipo == "gallo"){
+        print("co co ro co")
+    }else if(tipo == "vaca"){
+        print("muu")
+    }
+
+Lo correcto seria: 
+
+Collection<Cantante> cantantes;
+
+cantantes.add(new Gallo()));
+cantantes.add(new Pajaro()));
+cantantes.add(new Pollo()));
+
+for (Cantante /*TIPO DE DATO*/ cantante /*NOMBRAMOS A CADA ITEM DEL ARRAY*/ : cantantes /*ARRAY QUE RECORRE*/){
+    cantante.cantar();
+}
+
+/*Si el dia de mañana quiero agregar otro cantante: cantantes.add(new Tini())); no tengo que volver a tocar el for*/
+
+--> Pilares de POO: 
+    - Abstraccion
+    - Polimorfismo
+    - Encapsulamiento
+    - Delegacion
+    - Herencia
+
+    Beneficios: 
+    - Reduce el acoplamiento y hace que el codigo sea mas facil de leer
+    - Podemos tener una clase que 
+
+
+Ejemplo de ejercicio: 
+Un resto ofrece pizzas de lunes a viernes y parrila los fines de semana pero ahora quiere agregar susi los viernes. 
+
+/*ESTOS SON LOS OBJETOS*/
+
+public Comida cocinar(){
+    Harina h, Levadura l;
+    Masa masa = mezclarIngredientes(h, l);
+    ...
+    return unaPizza;
+}
+
+public Comida cocinar(){
+    prenderBrasas();
+    condimentar(unaBondiola);
+    ...
+    return unaBondiola;
+}
+
+/*Y ESTA ES LA CLASE COCINA*/
+
+public class Cocina{
+    private Cocinero cocinero;
+
+    public Comida cocinar(){
+        return this.cocinero.cocinar()
+    }
+
+    public void reemplazarCocinero(Cocinero nuevoCocinero){
+        this.cocinero = nuevoCocinero;
+    }
+}
+
+//*OTRO CASOOO: El de los casilleros*//
+
+En lugar de hacer que ocupado sea un atributo de la clase casillero hago otros 2 objetos que refieran a el estado ocupado y libre del casillero
+
+//*OTRO CASOOO: El de la salamandra con el gasto sgun*//
+
+/*Estas son las clases hijas que heredan de la padre (madera)*/
+public class Quebracho extends Madera{
+    private ...
+    public int calcularGasto(){
+        //calculo x
+        return x*2;
+    }
+}
+
+public class Pino extends Madera{
+    private ...
+    public int calcularGasto(){
+        //calculo y
+        return y+10;
+    }
+}
+
+/*Esta es como la clase main*/
+
+public class Salamandra{
+    private Collection<Madera> maderas;
+
+    public int gastoTotal(){
+        int gasto = 0;
+        for (Madera madera : maderas){
+            gasto += madera.caclularGasto();
+        }
+        return gasto;
+    }
+}
+
+/*De todos modos aca faltaria programar la clase madera*/
+/*Es muy importante hacer en la clase principal (corte el main) un array con los tipos de objetos que voy a trabajar (maderas) en lugar de llamar directamente a las clases (Pino y Quebracho). Porque no se a que clase voy a llamar y porque de este modo puedo agregar todas las maderas que quiera*/
+
+
+
+Ventajas y desventajas del polimorfismo: 
+    - Objetos distintos que entienden el mismo mensaje
+    - Los comportamientos se resuelven dentro de esos objetos
+    - Quien invoca a los objetos polimorficos no tiene conocimiento sobre a quien esta llamando (deventaja)
