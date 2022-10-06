@@ -249,3 +249,28 @@ Ventajas y desventajas del polimorfismo:
     - Objetos distintos que entienden el mismo mensaje
     - Los comportamientos se resuelven dentro de esos objetos
     - Quien invoca a los objetos polimorficos no tiene conocimiento sobre a quien esta llamando (deventaja)
+
+
+06/10/2022
+
+TDAs: Tipos de datos abstracto. Tienen una interface especifica con operaciones bien definidas. Estan diseñadas para manipular de forma clara y predeterminada los elementos de un conjunto de datos, puedo implementar una pila una cola sobre vectores pero de una determinada manear, no puedo trabajar como yo quiera. Ademas los reconocemos con muhca facilidad en la vida cotidiana. 
+¿Que nos importa? Su comportamiento y las operaciones (metodos) que puedo hacer sobre ellas. 
+¿Que no nos importa sobre ellas? La implementacion interna (como esta hecho), el lenguaje de programacion usado y la clase especifica de los elementos manipulados. 
+Interface: En esta todos los metodos tienen que se abstractos, no admite atributos y si constantes. Es como un contrato que se estbalece porque s eobligan a las clasas que la usen o implementen a desarrollar sus metodos (que matcheen, es decir que pueda hacer todos los metodos que tiene la clase)  
+Su gracia es que no nos importa como lo hace
+CONTENEDORES: 
+    - No iterables: (contenedores que determinan el orden de los elementos independientemente del dato). Aca se puede insertar un elemento, sacar un elemento, ver si esta vacia y ver si esta llena (Por eso me interesan las operaciones que puedo hacer sobre estos). Las pilas son lentas porquei si quier insertar un nuevo elemento tengo que recorrerla toda. Tiene un unico punto de acceso y solo se puede conocer o extraer el ultimo elemento agregado, aunque dependiendo de la implementacion (es decir que si tenes un metodo que te lo permita) a veces te deja espiar quien es el proximo pero sin extraerlo. 
+        PILA --> El ultimo en entrar es el primero en salir, porque es el que queda arriba de todo (LIFO). Agrega siempre "al fondo" y solo se puede conocer o extraer el primer elemento agregado.
+        COLA --> El primero en entrar es el primero en salir (FIFO). 
+    - Iterables: (Contenedores que no determinan el orden de los elementos, desordenados o dependiendo de sus datos)
+        - LISTA --> Agregar en la posicion calculada segun un orden definido especificamente. Se puede aaceder o extraer cualquier elemento contenido y se puede ubicar por posicion o por clave.
+        - ARBOL
+        - MAPA
+
+
+Cuando es herencia ponemos EXTENDS y cuando es interface ponemos IMPLEMENTS
+
+/*foto de codigo*/
+Las interfaces saben decir si estan llenas o vacias
+La flecha de interface es linea punteada con la punta vacia (clase a, flecha apuntando hacia b, implementa, una clase b)
+En UML para decir que un metodo es abstracto lo ponemos en letra italica
